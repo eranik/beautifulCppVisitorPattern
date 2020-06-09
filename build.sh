@@ -1,5 +1,9 @@
 #!/bin/bash
 
-mv ./BeautifulModernVisitorPatternWithData.exe /tmp 2>/dev/null
-g++ -O2 -std=c++2a ./BeautifulModernVisitorPatternWithData.cpp  -o BeautifulModernVisitorPatternWithData.exe |& tee BeautifulModernVisitorPatternWithData.log
+mkdir -p bin
+pushd bin
+	cmake ..
+	make -j
+	cp ./BeautifulModernVisitorPatternWithData .. 2>/dev/null
+popd
 
