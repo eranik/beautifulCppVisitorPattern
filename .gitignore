@@ -32,3 +32,4 @@
 *.app
 
 BeautifulModernVisitorPatternWithData.log
+.vscode/settings.json

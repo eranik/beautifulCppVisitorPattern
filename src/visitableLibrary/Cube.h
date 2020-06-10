@@ -3,32 +3,18 @@
 
 #include <memory>
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <cmath>
-#include <iomanip>
-
+#include "AbstractGeometricElement.h"
+#include "GeometricElementVisitorInterface.h"
 
 class Cube : public AbstractGeometricElement, public std::enable_shared_from_this<Cube>  {
 public:
     using SharedPtr = std::shared_ptr<Cube>;
 
-    Cube (double width, double height, double length)
-    : AbstractGeometricElement("Cube", "Volume")
-    , width(width)
-    , height(height)
-    , length(length)
-    {
-    }
+    Cube (double width, double height, double length);
 
-    virtual void accept(GeometricElementVisitorInterface& visitor) override {
-        visitor.visit(shared_from_this());
-    }
+    virtual void accept(GeometricElementVisitorInterface& visitor) override;
 
-    double volume() const {
-        return width * height * length;
-    }
+    double volume() const;
 
 private:
     double width;

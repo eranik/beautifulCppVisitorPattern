@@ -4,6 +4,7 @@
 #include <string>
 #include <memory>
 
+// #include "GeometricElementVisitorInterface.h"
 class GeometricElementVisitorInterface;
 
 class AbstractGeometricElement {

@@ -1,11 +1,15 @@
-#include <iostream>
-#include <string>
+#ifndef N_DIMENSIONAL_VOLUME_CALCULATOR_H_
+#define N_DIMENSIONAL_VOLUME_CALCULATOR_H_
+
 #include <memory>
 #include <vector>
-#include <cmath>
-#include <iomanip>
+#include <tuple>
 
-
+#include "AbstractGeometricElement.h"
+#include "GeometricElementVisitorInterface.h"
+#include "Rectangle.h"
+#include "Cube.h"
+#include "TenDimensionalElement.h"
 
 class NDimensionalVolumeCalculator : public GeometricElementVisitorInterface {
 public:
@@ -31,27 +35,16 @@ public:
     using DataHolderPtr = std::shared_ptr<NDimensionalVolumeCalculator::DataHolder>;
     // end of Internal class DataHolder
 
-    NDimensionalVolumeCalculator()
-    : dataHolderPtr(std::make_shared<DataHolder>())
-    {
-    }
+    NDimensionalVolumeCalculator();
 
-    virtual void visit(Rectangle::SharedPtr rectangle) override {
-        dataHolderPtr->add_data(rectangle, rectangle->area());
-    }
+    virtual void visit(Rectangle::SharedPtr rectangle) override;
+    virtual void visit(Cube::SharedPtr cube) override;
 
-    virtual void visit(Cube::SharedPtr cube) override {
-        dataHolderPtr->add_data(cube, cube->volume());
-    }
+    virtual void visit(TenDimensionalElement::SharedPtr ten_dim_elem) override;
+    DataHolderPtr get_data_holder_ptr();
 
-    virtual void visit(TenDimensionalElement::SharedPtr ten_dim_elem) override {
-        dataHolderPtr->add_data(ten_dim_elem, ten_dim_elem->ten_dimensional_volume());
-    }
-
-    DataHolderPtr get_data_holder_ptr() {
-        return dataHolderPtr;
-    }
-    
 private:
     DataHolderPtr dataHolderPtr;
 };
+
+#endif

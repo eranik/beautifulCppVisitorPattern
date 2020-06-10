@@ -1,37 +1,26 @@
-#include <iostream>
-#include <string>
+#ifndef TEN_DIMENSIONAL_ELEMENT_H_
+#define TEN_DIMENSIONAL_ELEMENT_H_
+
 #include <memory>
-#include <vector>
 #include <cmath>
-#include <iomanip>
+
+#include "GeometricElementVisitorInterface.h"
 
 class TenDimensionalElement : public AbstractGeometricElement, public std::enable_shared_from_this<TenDimensionalElement>  {
 public:
     using SharedPtr = std::shared_ptr<TenDimensionalElement>;
 
-    TenDimensionalElement (std::array<double, 10> lengths)
-    : AbstractGeometricElement("Ten Dimensional Element", "Ten Dimensional Volume")
-    , lengths(lengths)
-    {
-    }
+    TenDimensionalElement (std::array<double, 10> lengths);
 
-    virtual void accept(GeometricElementVisitorInterface& visitor) override {
-        visitor.visit(shared_from_this());
-    }
+    virtual void accept(GeometricElementVisitorInterface& visitor) override;
 
-    double ten_dimensional_volume() const {
-        double res = 1;
-        for (auto l : lengths) {
-            res *= fancy_orthagonalize(l);
-        }
-        return res;
-    }
+    double ten_dimensional_volume() const;
 
 private:
     const double PI = std::acos(-1);
     std::array<double, 10> lengths;
 
-    double fancy_orthagonalize(double geometric_elements) const {
-        return geometric_elements * std::cos(PI / 6);
-    }
+    double fancy_orthagonalize(double geometric_elements) const;
 };
+
+#endif

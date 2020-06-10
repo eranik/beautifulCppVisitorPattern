@@ -1,30 +1,16 @@
-#include <iostream>
-#include <string>
-#include <memory>
-#include <vector>
-#include <cmath>
-#include <iomanip>
+#include "Rectangle.h"
 
-class Rectangle : public AbstractGeometricElement, public std::enable_shared_from_this<Rectangle> {
-public:
-    using SharedPtr = std::shared_ptr<Rectangle>;
-    
-    Rectangle (double width, double height)
-    : AbstractGeometricElement("Rectangle", "Surface")
-    , width(width)
-    , height(height)
-    {
-    }
+Rectangle::Rectangle (double width, double height)
+: AbstractGeometricElement("Rectangle", "Surface")
+, width(width)
+, height(height)
+{
+}
 
-    virtual void accept(GeometricElementVisitorInterface& visitor) override {
-        visitor.visit(shared_from_this());
-    }
+void Rectangle::accept(GeometricElementVisitorInterface& visitor) {
+    visitor.visit(shared_from_this());
+}
 
-    double area() const {
-        return width * height;
-    }
-
-private:
-    double width;
-    double height;
-};
+double Rectangle::area() const {
+    return width * height;
+}

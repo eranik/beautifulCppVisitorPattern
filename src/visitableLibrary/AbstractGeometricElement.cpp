@@ -1,8 +1,8 @@
-#include "GeometricElement.h"
+#include "AbstractGeometricElement.h"
 
 #include <string>
 
-AbstractGeometricElement::AbstractGeometricElement(std::string name = "AbstractGeometricElement", std::string n_dimentional_volume_keyword = "Volume")
+AbstractGeometricElement::AbstractGeometricElement(std::string name, std::string n_dimentional_volume_keyword)
 :name(name)
 , n_dimentional_volume_keyword(n_dimentional_volume_keyword)
 {}
